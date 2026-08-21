@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wakey History of Vale</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#eee6d8;color:#241f1a;font-family:Georgia,"Times New Roman",serif}
+header{position:sticky;top:0;z-index:10;background:#211c18;color:#fff9ec;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-weight:bold;font-size:20px}
+.domain{font:14px Arial,sans-serif;opacity:.75}
+nav a{color:#fff9ec;text-decoration:none;margin-left:18px;font:14px Arial,sans-serif}
+.hero{min-height:72vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:70px 25px;background:linear-gradient(135deg,#342a23,#171310);color:#fff8e8}
+.hero h1{font-size:clamp(40px,8vw,78px);margin:0 0 18px}
+.hero p{font-size:20px;max-width:680px;margin:10px auto;line-height:1.6}
+.btn{display:inline-block;margin-top:25px;padding:13px 24px;border-radius:28px;background:#fff8e8;color:#211c18;text-decoration:none;font:bold 15px Arial,sans-serif}
+main{max-width:980px;margin:auto}
+section{padding:70px 25px}
+.section-title{text-align:center;font-size:34px;margin:0 0 35px}
+.intro-card,.chapter-card{background:#fffdf8;border-radius:14px;padding:38px;box-shadow:0 12px 35px rgba(0,0,0,.1);line-height:1.75;font-size:18px}
+.chapter-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.chapter-card h3{margin-top:0;font-size:24px}
+.chapter-card p{color:#5c534a}
+.reader{display:none}
+.reader.active{display:block}
+.page{display:none;min-height:650px;background:#fffdf8;margin:25px auto;padding:65px clamp(28px,7vw,80px);border-radius:14px;box-shadow:0 12px 35px rgba(0,0,0,.1);line-height:1.78;font-size:18px}
+.page.active{display:block}
+.page h2{text-align:center;font-size:32px;margin-top:0;margin-bottom:42px}
+.dialogue{margin:22px 0;padding-left:25px;font-style:italic}
+.reader-controls{display:flex;justify-content:center;align-items:center;gap:18px;margin:20px 0 60px;font:14px Arial,sans-serif}
+.reader-controls button{border:0;background:#211c18;color:#fff;padding:10px 18px;border-radius:22px;cursor:pointer}
+.reader-controls button:disabled{opacity:.35}
+.reader-controls button.back{background:#6f6255}
+footer{text-align:center;padding:45px 20px;background:#211c18;color:#fff8e8;font:14px Arial,sans-serif}
+footer a{color:#fff8e8}
+@media(max-width:650px){header{flex-direction:column;align-items:flex-start}.domain{display:none}.intro-card,.chapter-card{padding:25px}.page{min-height:600px;padding:45px 25px;font-size:17px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">The Wakey History of Vale</div>
+    <div class="domain">TheWakeyHistoryOfVale.com</div>
+  </div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#chapters">Chapters</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div>
+    <h1>The Wakey History of Vale</h1>
+    <p>A very wacky family story told by e03_6.</p>
+    <p>Strange houses. Stranger families. And an air fryer named Bale.</p>
+    <a class="btn" href="#book">Start Reading</a>
+  </div>
+</section>
+
+<main>
+<section id="book">
+  <h2 class="section-title">The Book</h2>
+  <div class="intro-card">
+    <h2>Introduction</h2>
+    <p>Hello! My name is <strong>e03_6</strong>, and the story I’m about to tell you is the story of my ancestor… and trust me, you’re not ready for this! 😭</p>
+    <p>So… where should we start?</p>
+    <p>Let’s start from the beginning! Lol, I’m not going to keep you waiting! So sit back, relax, and get ready to read the very wacky story of this little Vale…</p>
+    <p><a class="btn" href="#reader">Open the book</a></p>
+  </div>
+</section>
+
+<section id="chapters">
+  <h2 class="section-title">Chapters</h2>
+  <div class="chapter-grid">
+    <div class="chapter-card">
+      <h3>Chapter 1 — The Beginning of the Chaos</h3>
+      <p>Vale, Stephanie, Grandma, the triplets, Bale the air fryer, and the mysterious free house in AssCity.</p>
+      <a class="btn" href="#reader" onclick="openReader()">Read Chapter 1</a>
+    </div>
+    <div class="chapter-card">
+      <h3>Chapter 2 — Coming Soon</h3>
+      <p>The family is heading toward the strange city of Assville…</p>
+    </div>
+  </div>
+</section>
+
+<section class="reader" id="reader">
+  <div id="pages"></div>
+  <div class="reader-controls">
+    <button class="back" onclick="closeReader()">← Back to chapters</button>
+    <button id="prev">← Previous</button>
+    <span id="counter"></span>
+    <button id="next">Next →</button>
+  </div>
+</section>
+</main>
+
+<footer>
+  <strong>TheWakeyHistoryOfVale.com</strong><br><br>
+  The very wacky story of Vale — created with e03_6.
+</footer>
+
+<script>
+const pagesData = [
+{title:"Introduction", html:`<p>Hello! My name is <strong>e03_6</strong>, and the story I’m about to tell you is the story of my ancestor… and trust me, you’re not ready for this! 😭</p><p>So… where should we start?</p><p>Let’s start from the beginning! Lol, I’m not going to keep you waiting! So sit back, relax, and get ready to read the very wacky story of this little Vale…</p>`},
+{title:"Chapter 1", html:`<p>Vale announced to everyone that he was going to be a father. He and Stephanie began telling the whole family, starting with Grandma, a woman over 1,000 years old who had somehow married a lamppost.</p><p>When Grandma heard the news, she was a little annoyed.</p><p>She looked at Vale and said:</p><p class="dialogue">«You dare have a child with that ass-face? Oh, my son… I didn’t raise you like that!»</p><p>Vale stood there in complete silence. Stephanie, meanwhile, probably wished she had never suggested telling Grandma first.</p><p>Then Stephanie snapped:</p><p class="dialogue">«You're the one who's a real ass, Grandma! You married a lamppost without any emotion when you could have married Elon Musk, you bitch!»</p><p>And just like that, the family celebration was already off to a fantastic start.</p>`},
+{title:"Chapter 1", html:`<p>But Vale wasn't going to let Grandma ruin his happiness. He shook his head and said:</p><p class="dialogue">«I don't care what you say. Stephanie is the best woman there is! Plus, she's got one of those fucking asses!»</p><p>Grandma stared at him for a moment. Then she sighed.</p><p class="dialogue">«My son… you'll see. She's going to pull off a 1v50 behind your back. And when that happens, don't come crying to me!»</p><p>Vale raised an eyebrow. Grandma continued:</p><p class="dialogue">«It's going to be Mia Khalifa at this rate!»</p><p>Vale had absolutely no idea what Grandma was talking about. But somehow, he had a feeling this family was going to be a lot more complicated than he thought.</p><p>Later that day, Vale and Stephanie returned home. As Vale walked through the house, he stopped in front of one of his ancestor's strangest possessions: an air fryer.</p><p>Its name was <strong>Bale</strong>. Yes. Bale.</p>`},
+{title:"Chapter 1", html:`<p>And this wasn't an ordinary air fryer. Bale could cook anything without putting anything inside it. No food. No ingredients. Nothing.</p><p>You simply told Bale what you wanted, waited a few seconds, and somehow… it appeared.</p><p class="dialogue">“Now that's what I call technology,” Vale said proudly.</p><p>Bale remained completely silent. After all, it was an air fryer.</p><p>Or was it?</p><p>Because in this house, you could never be completely sure what was normal and what wasn't.</p><p>A few weeks later, Stephanie gave birth to <strong>triplets</strong>! The first, and supposedly the strongest, was Vali. The second was Vala. And the third was Valo.</p><p>Vale was overjoyed. He picked up Vali and Vala and proudly held them in his arms.</p><p>Unfortunately, there was one tiny problem. He had completely forgotten about Valo.</p><p>Valo was still lying on the floor of the bedroom, completely forgotten.</p>`},
+{title:"Chapter 1", html:`<p>A little while later, Vali and Vala came looking for their father.</p><p class="dialogue">“Dad… you forgot Valo.”</p><p>Vale froze. He slowly turned around.</p><p class="dialogue">“Valo?”</p><p>The children nodded. Vale looked toward the bedroom, completely confused.</p><p class="dialogue">“Who the hell is this?”</p><p>And somewhere in the bedroom, Valo was probably wondering the exact same thing.</p><p>Later, Vale took the children to the park to play. The day was going perfectly normally… which, in Britishman, was already suspicious.</p><p>As Vale walked past a notice board, something immediately caught his attention. An enormous advertisement was hanging right in the middle.</p><p><strong>FREE HOUSE!</strong></p><p>Vale's eyes widened. And then he saw the location.</p><p><strong>AssCity.</strong></p><p>His favorite town. A completely free house… in AssCity?! Vale couldn't believe his luck.</p><p class="dialogue">“Finally!” he shouted.</p>`},
+{title:"Chapter 1", html:`<p>The children stared at him. Vale pointed excitedly at the advertisement.</p><p class="dialogue">“We're moving!”</p><p>Except Valo immediately interrupted him.</p><p class="dialogue">“Dad, you forgot Valo again! Please go get him!”</p><p>Vale looked at him, completely confused.</p><p class="dialogue">“Again, my angel, my baby, my love… who the hell is this Valo?!”</p><p><strong>SLAP!</strong></p><p>Stephanie had had enough.</p><p class="dialogue">“YOUR OTHER SON, YOU ASSHOLE!”</p><p>Vale rubbed his cheek and stared at her.</p><p class="dialogue">“Okay, okay! But do you really want me to destroy your ass?”</p><p>There was a long, painfully awkward silence. Everyone stared at Vale. Vale stared back.</p><p>Then he cleared his throat.</p><p class="dialogue">“Anyway… let's move on from this awkward moment. Bruuu.”</p><p>The family began packing up their belongings at home. For once, Vale decided to show Valo some affection. He walked over to him and gave him a hug. It was the first hug Vale had ever given Valo in his entire life. Valo's eyes opened wide in complete shock. He couldn't believe it. His father was finally hugging him!</p>`},
+{title:"Chapter 1", html:`<p>Then, without warning, Vale picked him up and threw him straight out the window.</p><p class="dialogue">«OH FUCK! Don't look at me like that, you devil!»</p><p>Valo flew through the air.</p><p><strong>PLOP!</strong></p><p>He landed directly on his buttocks in the garden. There was a moment of complete silence. Valo slowly stood up, covered in dirt and looking absolutely traumatized.</p><p>Vale looked out of the window.</p><p class="dialogue">«…Well. That went better than expected.»</p><p>And somehow, nobody in the family was even surprised anymore.</p><p style="text-align:center;font-style:italic;margin-top:50px">End of Chapter 1</p>`}
+];
+
+const pages = document.getElementById("pages");
+pagesData.forEach((p,i)=>{
+  const el=document.createElement("article");
+  el.className="page"+(i===0?" active":"");
+  el.innerHTML=`<h2>${p.title}</h2>${p.html}`;
+  pages.appendChild(el);
+});
+let current=0;
+const allPages=[...document.querySelectorAll(".page")];
+const counter=document.getElementById("counter");
+const prev=document.getElementById("prev");
+const next=document.getElementById("next");
+function show(i){
+ current=Math.max(0,Math.min(i,allPages.length-1));
+ allPages.forEach((p,n)=>p.classList.toggle("active",n===current));
+ counter.textContent=`${current+1} / ${allPages.length}`;
+ prev.disabled=current===0; next.disabled=current===allPages.length-1;
+}
+function openReader(){document.querySelector(".reader").classList.add("active");show(0)}
+function closeReader(){document.querySelector(".reader").classList.remove("active");location.hash="chapters"}
+prev.onclick=()=>show(current-1); next.onclick=()=>show(current+1);
+document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")show(current-1);if(e.key==="ArrowRight")show(current+1)});
+show(0);
+</script>
+</body>
+</html>
